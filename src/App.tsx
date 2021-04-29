@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tile } from './components/Tile';
+import { Board } from './components/Board';
 import logo from './logo.svg';
 import './App.css';
 
@@ -7,7 +7,7 @@ const App = () => (
   <div className="App">
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <Tile />
+      <Board />
       <p>
         Edit <code>src/App.tsx</code> and save to reload.
       </p>

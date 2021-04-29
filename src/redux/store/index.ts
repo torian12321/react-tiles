@@ -2,11 +2,6 @@
 import { createStore } from "redux";
 import rootReducer from "../reducers";
 
-interface IAction {
-  type?: string;
-  payload?: any;
-}
-
 const registerReduxDevtools = () => {
   const w: any = window;
   return w.__REDUX_DEVTOOLS_EXTENSION__ && w.__REDUX_DEVTOOLS_EXTENSION__()

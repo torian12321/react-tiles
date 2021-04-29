@@ -1,23 +1,31 @@
 import { createSelector } from 'reselect';
 import { AppState } from '../reducers';
-import { State as StateBoard, Options, Tile } from '../reducers/board.reducers';
+import { State as StateBoard, Options, Tile, Tiles } from '../reducers/board.reducers';
 
-const getBoard = (state: AppState): StateBoard =>
+const getBoardState = (state: AppState): StateBoard =>
   state.board || {};
 
-const getTiles = createSelector(
-  getBoard,
-  (board: StateBoard): Tile[] =>
-  board.tiles || []
-);
-
-export const getTileById = (state: AppState, id: string): Tile | {} =>
-  getTiles(state)
-    .find((tile: Tile) => tile.id === id)
-    || {};
-
 export const getOptions = createSelector(
-  getBoard,
+  getBoardState,
   (board: StateBoard): Options =>
   board.options || {}
 );
+
+// Tiles Selectors
+const getTilesState = createSelector(
+  getBoardState,
+  (board: StateBoard): Tiles =>
+  board.tiles || {}
+);
+
+export const getTilesList = createSelector(
+  getTilesState,
+  (tiles: Tiles): string[] =>
+  tiles.allIds || []
+);
+
+export const getTileById = (state: AppState, id: string): Tile => {
+  const byId = getTilesState(state).byIds || {};
+
+  return byId[id] || {};
+};

@@ -7,9 +7,8 @@ export interface AppState {
   common: StateCommon,
 }
 
-interface IAction {
-  type?: string;
-  payload?: any;
+export interface Action {
+  type: string,
 }
 
 const rootReducer = combineReducers({

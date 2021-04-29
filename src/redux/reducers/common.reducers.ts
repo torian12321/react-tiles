@@ -1,8 +1,5 @@
 import { ADD_ARTICLE } from "../actions/action.types";
-
-interface Action {
-  type: string,
-}
+import { Action } from './';
 export interface State {
   name: string,
 }
