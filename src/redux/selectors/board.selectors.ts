@@ -3,7 +3,7 @@ import { AppState } from '../reducers';
 import { State as StateBoard, Options, Tile, Tiles } from '../reducers/board.reducers';
 
 const getBoardState = (state: AppState): StateBoard =>
-  state.board || {};
+  state.board || state || {};
 
 export const getOptions = createSelector(
   getBoardState,
@@ -28,4 +28,11 @@ export const getTileById = (state: AppState, id: string): Tile => {
   const byId = getTilesState(state).byIds || {};
 
   return byId[id] || {};
+};
+
+export const getTileByCol = (state: AppState, col: number): Tile[] => {
+  const byId = getTilesState(state).byIds || {};
+
+  return Object.values(byId)
+    .filter((tile: Tile) => tile.y === col);
 };

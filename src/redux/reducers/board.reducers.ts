@@ -1,4 +1,5 @@
-import { TILE_TOGGLE, BOARD_RESET} from "../actions/action.types";
+import { TILE_TOGGLE, BOARD_RESET, BOARD_TOGGLE_COL } from "../actions/action.types";
+import { getTileById, getTileByCol } from '../selectors/board.selectors';
 import { Action } from './';
 
 export interface Tile {
@@ -28,8 +29,8 @@ const buildBoard2 = (size: number): Tiles => {
   const allIds = []
   var count = 0;
 
-  for (let y = 0; y < size; y++) {
-    for (let x = 0; x < size; x++) {
+  for (let x = 0; x < size; x++) {
+    for (let y = 0; y < size; y++) {  
       const id = count.toString();
       allIds.push(id);
       byIds[count] = {
@@ -58,11 +59,11 @@ const initialState: State = {
   }
 };
 
-const reducer = (state = initialState, action: State & Action & any) => {
+const reducer = (state: any = initialState, action: State & Action & any) => {
   switch (action.type) {
     case TILE_TOGGLE:
       const { id } = action;
-      const tile = state.tiles.byIds[id];
+      const tile = getTileById(state, id);
 
       return {
         ...state,
@@ -77,6 +78,29 @@ const reducer = (state = initialState, action: State & Action & any) => {
           }
         }
       };
+  
+      case BOARD_TOGGLE_COL:
+        const { col, active } = action.payload;
+        const updatedTiles: any = {};
+
+        getTileByCol(state, col).forEach(tile => {
+          updatedTiles[tile.id] = {
+            ...tile,
+            active: active,
+          }
+        });
+
+        return {
+          ...state,
+          tiles: {
+            ...state.tiles,
+            byIds: {
+              ...state.tiles.byIds,
+              ...updatedTiles,
+            }
+          }
+        };
+  
     case BOARD_RESET:
       return initialState;
     default:
