@@ -1,6 +1,14 @@
 .btn {
+  width: 50px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
   cursor: pointer;
 }
 .disabled {
-  opacity: .6;
+  opacity: .4;
+  cursor: not-allowed;
+}
+.icon {
+
 }

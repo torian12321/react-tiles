@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Props, State } from './BtnReset.interfaces';
+import logo from './undo.svg';
 import styles from './BtnReset.module.scss';
 
 const BtnReset: React.FunctionComponent<Props & State> = ({
@@ -25,7 +26,11 @@ const BtnReset: React.FunctionComponent<Props & State> = ({
         className,
       )}
     >
-      Reset
+      <img
+        src={logo}
+        alt="reset"
+        className={styles.logo}
+      />
     </button>
   );
 };
