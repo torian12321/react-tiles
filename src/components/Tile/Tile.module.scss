@@ -5,9 +5,18 @@
   margin: 6px;
   padding: 6px;
 }
-
 .tile {
   background: green;
+}
+.flipped .tile {
+  background: red;
+}
+.selected .tile {
+  opacity: .2;
+}
+
+.tile {
+  background-color: currentColor;
   // font-size: 100px;
 
   
@@ -24,8 +33,4 @@
   border-radius: 6px;
 
   cursor: pointer;
-
-  &_flipped {
-    background: red;
-  }
 }

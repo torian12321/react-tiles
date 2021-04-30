@@ -1,4 +1,10 @@
-import { TILE_TOGGLE, BOARD_RESET, BOARD_TOGGLE_COL } from "../actions/action.types";
+import {
+  TILE_TOGGLE,
+  BOARD_RESET,
+  BOARD_TOGGLE_COL,
+  BOARD_SELECTEDAREA_SET_INI,
+  BOARD_SELECTEDAREA_SET_END,
+} from "../actions/action.types";
 import { getTileById, getTileByCol } from '../selectors/board.selectors';
 import { Action } from './';
 
@@ -12,21 +18,26 @@ export interface Tiles {
   allIds: string[],
   byIds: {
     [key: string]: Tile,
-  }
+  },
 };
 export interface Options {
   columns: number,
-  rows: number
+  rows: number,
+};
+export interface SelectedArea {
+  iniTile?: string,
+  endTile?: string,
 };
 
 export interface State {
   tiles: Tiles,
-  options: Options
+  options: Options,
+  selectedArea: SelectedArea,
 };
 
 const buildBoard2 = (size: number): Tiles => {
   const byIds: { [key: string]: Tile } = {};
-  const allIds = []
+  const allIds = [];
   var count = 0;
 
   for (let x = 0; x < size; x++) {
@@ -56,7 +67,11 @@ const initialState: State = {
   options: {
     columns: iniSize,
     rows: iniSize,
-  }
+  },
+  selectedArea: {
+    iniTile: undefined,
+    endTile: undefined,
+  },
 };
 
 const reducer = (state: any = initialState, action: State & Action) => {
@@ -74,9 +89,9 @@ const reducer = (state: any = initialState, action: State & Action) => {
             [id]: {
               ...tile,
               flipped: !tile.flipped,
-            }
-          }
-        }
+            },
+          },
+        },
       };
   
       case BOARD_TOGGLE_COL:
@@ -97,10 +112,31 @@ const reducer = (state: any = initialState, action: State & Action) => {
             byIds: {
               ...state.tiles.byIds,
               ...updatedTiles,
-            }
-          }
+            },
+          },
         };
-  
+
+    case BOARD_SELECTEDAREA_SET_INI:
+      const { iniTile = undefined } = action.payload;
+
+      return {
+        ...state,
+        selectedArea: {
+          ...state.selectedArea,
+          iniTile,
+        },
+      };
+    case BOARD_SELECTEDAREA_SET_END:
+      const { endTile = undefined } = action.payload;
+
+      return {
+        ...state,
+        selectedArea: {
+          ...state.selectedArea,
+          endTile,
+        },
+      };
+
     case BOARD_RESET:
       return initialState;
     default:
