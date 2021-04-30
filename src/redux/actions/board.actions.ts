@@ -1,22 +1,33 @@
-import { TILE_TOGGLE, BOARD_TOGGLE_COL } from './action.types';
+import {
+  BOARD_RESET,
+  BOARD_TOGGLE_COL,
+  TILE_TOGGLE,
+} from './action.types';
 import { getTileById } from '../selectors/board.selectors';
+
+export const boardReset = () => ({
+  type: BOARD_RESET,
+});
 
 export const tileToggle = (id: string) => ({
   type: TILE_TOGGLE,
-  id,
+  payload: {
+    id,
+  },
 });
 
-export const columnToggle = (id: string): Object => (
+// Flip the full column from the indicated tale
+export const columnToggle = (tileId: string): Object => (
   dispatch: any,
   getState: Function
 ) => {
-    const tile = getTileById(getState(), id);
+    const tile = getTileById(getState(), tileId);
 
     return dispatch({
       type: BOARD_TOGGLE_COL,
       payload: {
         col: tile.y,
-        active: tile.active,
+        flipped: !tile.flipped,
       }
     });
   };

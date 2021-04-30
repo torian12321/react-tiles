@@ -1,8 +1,9 @@
 export interface Props {
   id: string,
-  isActive?: boolean,
+  isFlipped?: boolean,
 };
 
 export interface State {
   onClick: Function,
+  onDoubleClick: Function,
 };

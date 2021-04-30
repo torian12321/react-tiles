@@ -6,7 +6,7 @@ export interface Tile {
   id: string,
   x: number,
   y: number,
-  active: boolean,
+  flipped: boolean,
 };
 export interface Tiles {
   allIds: string[],
@@ -37,7 +37,7 @@ const buildBoard2 = (size: number): Tiles => {
         id,
         x,
         y,
-        active: false,
+        flipped: false,
       };
 
       count++;
@@ -59,10 +59,10 @@ const initialState: State = {
   }
 };
 
-const reducer = (state: any = initialState, action: State & Action & any) => {
+const reducer = (state: any = initialState, action: State & Action) => {
   switch (action.type) {
     case TILE_TOGGLE:
-      const { id } = action;
+      const { id } = action.payload;
       const tile = getTileById(state, id);
 
       return {
@@ -73,20 +73,20 @@ const reducer = (state: any = initialState, action: State & Action & any) => {
             ...state.tiles.byIds,
             [id]: {
               ...tile,
-              active: !tile.active,
+              flipped: !tile.flipped,
             }
           }
         }
       };
   
       case BOARD_TOGGLE_COL:
-        const { col, active } = action.payload;
+        const { col, flipped } = action.payload;
         const updatedTiles: any = {};
 
         getTileByCol(state, col).forEach(tile => {
           updatedTiles[tile.id] = {
             ...tile,
-            active: active,
+            flipped,
           }
         });
 

@@ -9,6 +9,9 @@ export interface AppState {
 
 export interface Action {
   type: string,
+  payload: {
+    [key: string]: any,
+  },
 }
 
 const rootReducer = combineReducers({

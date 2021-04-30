@@ -23,12 +23,14 @@ export const getTilesList = createSelector(
   (tiles: Tiles): string[] =>
   tiles.allIds || []
 );
+const getTilesById = createSelector(
+  getTilesState,
+  (tiles: Tiles): any =>
+  tiles.byIds || {}
+);
 
-export const getTileById = (state: AppState, id: string): Tile => {
-  const byId = getTilesState(state).byIds || {};
-
-  return byId[id] || {};
-};
+export const getTileById = (state: AppState, id: string): Tile =>
+  getTilesById(state)[id] || {};
 
 export const getTileByCol = (state: AppState, col: number): Tile[] => {
   const byId = getTilesState(state).byIds || {};
@@ -36,3 +38,12 @@ export const getTileByCol = (state: AppState, col: number): Tile[] => {
   return Object.values(byId)
     .filter((tile: Tile) => tile.y === col);
 };
+
+export const getFlippedTiles = createSelector(
+  getTilesById,
+  (tiles: Tiles): string[] =>
+    Object.values(tiles)
+      .filter((tile: Tile) => !!tile.flipped)
+      .map((tile: Tile) => tile.id)
+);
+
