@@ -16,7 +16,6 @@ const useLongPress = (
   const target = useRef();
 
   const start = useCallback(event => {
-    console.log('aa');
       if (shouldPreventDefault && event.target) {
           event.target.addEventListener("touchend", preventDefault, {
           passive: false
@@ -32,7 +31,7 @@ const useLongPress = (
   );
 
   const clear = useCallback((event, shouldTriggerClick = true) => {
-    console.log('bb');
+    console.log('clear');
       timeout.current && clearTimeout(timeout.current);
       shouldTriggerClick && !longPressTriggered && onClick();
       setLongPressTriggered(false);
@@ -47,6 +46,7 @@ const useLongPress = (
     onMouseDown: e => start(e),
     onTouchStart: e => start(e),
     onMouseUp: e => { clear(e); onMouseUp(e)},
+    // onMouseUp: e => { clear(e)},
     onMouseLeave: e => clear(e, false),
     onTouchEnd: e => clear(e),
   };

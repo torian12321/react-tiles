@@ -15,7 +15,7 @@ const Tile: React.FunctionComponent<Props & State> = ({
   onMouseUp = (e: Event) => {},
 }: Props & State) => {
   const [handleClick, handleDoubleClick] = useOnDoubleClick(onClick, onDoubleClick);
-  const longPressEvent = useLongPress({ onLongPress, onClick: handleClick, onMouseUp });
+  const longPressEvent = useLongPress({ onLongPress, onClick, onMouseUp });
 
   return (
     <div
