@@ -1,4 +1,4 @@
-![CI/CD](https://github.com/torian12321/react-tiles/workflows/CI/CD/badge.svg)
+![CI/CD](https://github.com/torian12321/react-tiles/workflows/Node.js CD ⚙️/badge.svg)
 ![License](https://img.shields.io/github/license/torian12321/react-tiles)
 
 # Getting Started with Create React App
