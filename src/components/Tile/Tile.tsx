@@ -3,35 +3,35 @@ import classNames from 'classnames';
 import { Props, State } from './Tile.interfaces';
 import styles from './Tile.module.scss';
 import useOnDoubleClick from "../../hooks/useOnDoubleClick";
+import useLongPress from "../../hooks/useLongPress";
 
 
 const Tile: React.FunctionComponent<Props & State> = ({
   id, isFlipped = false, isSelected = false,
-  onClick, onDoubleClick, onMouseEnter,
+  onClick = (e: Event) => {},
+  onDoubleClick= (e: Event) => {},
+  onMouseEnter = (e: Event) => {},
+  onLongPress = (e: Event) => {},
+  onMouseUp = (e: Event) => {},
 }: Props & State) => {
   const [handleClick, handleDoubleClick] = useOnDoubleClick(onClick, onDoubleClick);
+  const longPressEvent = useLongPress({ onLongPress, onClick: handleClick, onMouseUp });
 
-  const handlePress = () => {
-    // console.log('abcccc');
-    // onDoubleClick();
-    onMouseEnter();
-  };
-  // console.log(id)
   return (
     <div
       className={classNames(
         styles.wrapper,
         isFlipped && styles.flipped,
         isSelected && styles.selected,
-        // isFlipped && styles.tile_flipped,
       )}
     >
       <button
         aria-label={`tile-${id}`}
-        onClick={handleClick}
+        {...longPressEvent}
         onDoubleClick={handleDoubleClick}
-        onMouseEnter={handlePress}
-        // onMouseDown={handlePress}
+        onMouseEnter={() => onMouseEnter()}
+        // onMouseUp={() => onMouseUp()}
+        
         className={classNames(
           styles.tile,
           // isSelected && styles.tile_selected,

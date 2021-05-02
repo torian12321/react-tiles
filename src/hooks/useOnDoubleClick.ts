@@ -31,7 +31,6 @@ export const useOnDoubleClick = (
 ) => {
   const api = useCancellablePromises();
   const delay = get(options, 'delay', DELAY_DEFAULT)
-  // const { delay = 100 } = options;
 
   const handleClick = () => {
     api.clearPendingPromises();
