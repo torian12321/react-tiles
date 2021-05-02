@@ -1,11 +1,11 @@
 import {
-  TILE_TOGGLE,
+  TILES_TOGGLE,
   BOARD_RESET,
-  BOARD_TOGGLE_COL,
+  BOARD_SELECTEDAREA_UNSET,
   BOARD_SELECTEDAREA_SET_INI,
   BOARD_SELECTEDAREA_SET_END,
 } from "../actions/action.types";
-import { getTileById, getTileByCol } from '../selectors/board.selectors';
+import { getTileById } from '../selectors/board.selectors';
 import { Action } from './';
 
 export interface Tile {
@@ -62,47 +62,31 @@ const buildBoard2 = (size: number): Tiles => {
 }
 
 const iniSize = 6;
+const iniSelectedArea = {
+  iniTile: undefined,
+  endTile: undefined,
+};
 const initialState: State = {
   tiles: buildBoard2(iniSize),
   options: {
     columns: iniSize,
     rows: iniSize,
   },
-  selectedArea: {
-    iniTile: undefined,
-    endTile: undefined,
-  },
+  selectedArea: iniSelectedArea,
 };
 
 const reducer = (state: any = initialState, action: State & Action) => {
-  switch (action.type) {
-    case TILE_TOGGLE:
-      const { id } = action.payload;
-      const tile = getTileById(state, id);
-
-      return {
-        ...state,
-        tiles: {
-          ...state.tiles,
-          byIds: {
-            ...state.tiles.byIds,
-            [id]: {
-              ...tile,
-              flipped: !tile.flipped,
-            },
-          },
-        },
-      };
-  
-      case BOARD_TOGGLE_COL:
-        const { col, flipped } = action.payload;
+  switch (action.type) {  
+      case TILES_TOGGLE:
+        const { ids = [], flipped } = action.payload;
         const updatedTiles: any = {};
 
-        getTileByCol(state, col).forEach(tile => {
+        ids.forEach((id: string) => {
+          const tile = getTileById(state, id);
           updatedTiles[tile.id] = {
             ...tile,
             flipped,
-          }
+          };
         });
 
         return {
@@ -135,6 +119,12 @@ const reducer = (state: any = initialState, action: State & Action) => {
           ...state.selectedArea,
           endTile,
         },
+      };
+
+    case BOARD_SELECTEDAREA_UNSET:
+      return {
+        ...state,
+        selectedArea: iniSelectedArea,
       };
 
     case BOARD_RESET:

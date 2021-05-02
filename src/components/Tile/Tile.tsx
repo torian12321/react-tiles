@@ -16,7 +16,7 @@ const Tile: React.FunctionComponent<Props & State> = ({
     // onDoubleClick();
     onMouseEnter();
   };
-  console.log(id)
+  // console.log(id)
   return (
     <div
       className={classNames(

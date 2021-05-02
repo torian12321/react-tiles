@@ -5,13 +5,13 @@ import { State as StateBoard, Options, SelectedArea, Tile, Tiles } from '../redu
 const getBoardState = (state: AppState): StateBoard =>
   state.board || state || {};
 
-const getOptions = createSelector(
+export const getOptions = createSelector(
   getBoardState,
   (board: StateBoard): Options =>
   board.options || {}
 );
 
-const getSelectedArea = createSelector(
+export const getSelectedAreaOptions = createSelector(
   getBoardState,
   (board: StateBoard): SelectedArea =>
   board.selectedArea || {}
@@ -60,7 +60,7 @@ export const getFlippedTiles = createSelector(
 );
 
 export const getTileseOnSelectedArea = createSelector(
-  [getTilesById, getSelectedArea],
+  [getTilesById, getSelectedAreaOptions],
   (tiles: Tiles, selectedArea: SelectedArea): string[] => {
     const { iniTile, endTile } = selectedArea;
     const tilesArr = Object.values(tiles);
@@ -82,6 +82,7 @@ export const getTileseOnSelectedArea = createSelector(
 
     return tilesArr
       .filter((tile: Tile) => (
+        // Get tiles on the 'square' of the aera
         onRange(tile.x, ini.x, end.x) &&
         onRange(tile.y, ini.y, end.y)
       ))
@@ -89,5 +90,6 @@ export const getTileseOnSelectedArea = createSelector(
   }
 );
 
+// Detect if the tile is under selected area
 export const getTileIsSelected = (state: AppState, tileId: string): boolean =>
   !!getTileseOnSelectedArea(state).includes(tileId);
