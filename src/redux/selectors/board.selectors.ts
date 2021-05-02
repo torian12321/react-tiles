@@ -82,6 +82,7 @@ export const getTileseOnSelectedArea = createSelector(
 
     return tilesArr
       .filter((tile: Tile) => (
+        // Get tiles on the 'square' of the aera
         onRange(tile.x, ini.x, end.x) &&
         onRange(tile.y, ini.y, end.y)
       ))
@@ -89,5 +90,6 @@ export const getTileseOnSelectedArea = createSelector(
   }
 );
 
+// Detect if the tile is under selected area
 export const getTileIsSelected = (state: AppState, tileId: string): boolean =>
   !!getTileseOnSelectedArea(state).includes(tileId);
