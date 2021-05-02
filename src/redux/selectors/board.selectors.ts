@@ -11,7 +11,7 @@ export const getOptions = createSelector(
   board.options || {}
 );
 
-const getSelectedArea = createSelector(
+export const getSelectedAreaOptions = createSelector(
   getBoardState,
   (board: StateBoard): SelectedArea =>
   board.selectedArea || {}
@@ -60,7 +60,7 @@ export const getFlippedTiles = createSelector(
 );
 
 export const getTileseOnSelectedArea = createSelector(
-  [getTilesById, getSelectedArea],
+  [getTilesById, getSelectedAreaOptions],
   (tiles: Tiles, selectedArea: SelectedArea): string[] => {
     const { iniTile, endTile } = selectedArea;
     const tilesArr = Object.values(tiles);

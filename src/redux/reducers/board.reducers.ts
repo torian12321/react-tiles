@@ -1,10 +1,11 @@
 import {
   TILES_TOGGLE,
   BOARD_RESET,
+  BOARD_SELECTEDAREA_UNSET,
   BOARD_SELECTEDAREA_SET_INI,
   BOARD_SELECTEDAREA_SET_END,
 } from "../actions/action.types";
-import { getTileById, getTileByCol } from '../selectors/board.selectors';
+import { getTileById } from '../selectors/board.selectors';
 import { Action } from './';
 
 export interface Tile {
@@ -61,16 +62,17 @@ const buildBoard2 = (size: number): Tiles => {
 }
 
 const iniSize = 6;
+const iniSelectedArea = {
+  iniTile: undefined,
+  endTile: undefined,
+};
 const initialState: State = {
   tiles: buildBoard2(iniSize),
   options: {
     columns: iniSize,
     rows: iniSize,
   },
-  selectedArea: {
-    iniTile: undefined,
-    endTile: undefined,
-  },
+  selectedArea: iniSelectedArea,
 };
 
 const reducer = (state: any = initialState, action: State & Action) => {
@@ -117,6 +119,12 @@ const reducer = (state: any = initialState, action: State & Action) => {
           ...state.selectedArea,
           endTile,
         },
+      };
+
+    case BOARD_SELECTEDAREA_UNSET:
+      return {
+        ...state,
+        selectedArea: iniSelectedArea,
       };
 
     case BOARD_RESET:

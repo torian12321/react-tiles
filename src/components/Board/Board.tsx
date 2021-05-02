@@ -1,6 +1,6 @@
 import React from 'react';
 import Tile from '../Tile';
-import { IBoard, IBoardRow } from './Board.interfaces';
+import { Props, State, IBoardRow } from './Board.interfaces';
 import styles from './Board.module.scss';
 
 const arrayTo2DArray2 = (list: string[], howMany: number) => {
@@ -21,14 +21,21 @@ const Row = ({ tiles = [] }: IBoardRow) => (
   </div>
 );
 
-const Board = ({ tiles = [], columns }: IBoard) => {
+const Board: React.FunctionComponent<Props & State> = ({
+  tiles = [],
+  columns,
+  onMouseLeave = () => {},
+}: Props & State) => {
+  const handleOnMouseLeave = () => {
+    onMouseLeave();
+  }
   const renderRows = () => (
     arrayTo2DArray2(tiles, columns)
       .map((tilesInRow: any, i: number) => <Row key={`row_${i}`} tiles={tilesInRow} />)
   );
 
   return (
-    <div className={styles.board}>
+    <div className={styles.board} onMouseLeave={handleOnMouseLeave}>
       {renderRows()}
     </div>
   );
