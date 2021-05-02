@@ -1,13 +1,11 @@
 .board {
-  // display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
-  // justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
 
-  // width: 80%;
-  // max-width: 200px;
-
-  display: grid;
-  // grid-column: 3 / span 2;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }

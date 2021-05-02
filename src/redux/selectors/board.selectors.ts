@@ -5,7 +5,7 @@ import { State as StateBoard, Options, SelectedArea, Tile, Tiles } from '../redu
 const getBoardState = (state: AppState): StateBoard =>
   state.board || state || {};
 
-const getOptions = createSelector(
+export const getOptions = createSelector(
   getBoardState,
   (board: StateBoard): Options =>
   board.options || {}
