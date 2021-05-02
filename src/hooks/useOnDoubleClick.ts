@@ -41,7 +41,6 @@ export const useOnDoubleClick = (
 
     return waitForClick.promise
       .then(() => {
-        console.log('Clicked 2222');
         api.removePendingPromise(waitForClick);
         onClick();
       })
