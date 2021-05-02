@@ -2,25 +2,23 @@
 .wrapper {
   flex-basis: calc(100% / 6);
   box-sizing: border-box;
-  margin: 6px;
+  // margin: 6px;
   padding: 6px;
-  color: green;
-}
-.flipped {
-  color: red;
-}
-.selected .tile {
-  opacity: .2;
+  transition: opacity .2s;
+
+  .tile {
+    background: green;
+  }
+  &.flipped .tile {
+    background: red;
+  }
+  &.selected {
+    opacity: .2;
+  }
 }
 
 .tile {
-  color: currentColor;
   background-color: currentColor;
-  // font-size: 100px;
-
-  
-  // height: 1em;
-  // width: 1em;
 
   width: 100%;
   padding-top: 100%;
@@ -28,8 +26,10 @@
   border: none;
   outline: none;
   box-sizing: content-box;
-  // margin: 5px;
+  margin: 5px;
   border-radius: 6px;
+  transition: background .4s;
+  transition-delay: .2s;
 
   cursor: pointer;
 }

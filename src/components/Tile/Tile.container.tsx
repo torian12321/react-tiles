@@ -7,6 +7,8 @@ import {
   columnToggle,
   boardSelectedAreaSetEndTile,
   boardSelectedAreaSetIniTile,
+  areaToggle,
+  boardSelectedAreaUnset,
 } from '../../redux/actions/board.actions';
 import Tile from './Tile';
 import { Props, State } from './Tile.interfaces';
@@ -21,12 +23,17 @@ const mapState = (state: AppState, ownProps: Props): Props => {
   };
 };
 const mapDispatchToProps = (dispatch: Function, ownProps: Props): State => ({
-  onClick: () => {
-    dispatch(boardSelectedAreaSetIniTile(ownProps.id));
-    dispatch(tileToggle(ownProps.id));
-  },
+  onClick: () => dispatch(tileToggle(ownProps.id)),
   onDoubleClick: () => dispatch(columnToggle(ownProps.id)),
   onMouseEnter: () => dispatch(boardSelectedAreaSetEndTile(ownProps.id)),
+  onLongPress: () => {
+    dispatch(boardSelectedAreaSetIniTile(ownProps.id));
+    dispatch(boardSelectedAreaSetEndTile(ownProps.id));
+  },
+  onMouseUp: () => {
+    dispatch(areaToggle());
+    dispatch(boardSelectedAreaUnset());
+  },
 });
 
 export default connect(

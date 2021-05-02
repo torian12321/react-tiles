@@ -3,7 +3,7 @@
 import { get } from 'lodash';
 import useCancellablePromises from './useCancellablePromises';
 
-const DELAY_DEFAULT = 300;
+const DELAY_DEFAULT = 250;
 
 const delayFunc = (n: number = DELAY_DEFAULT) => new Promise(resolve => setTimeout(resolve, n));
 const cancellablePromise = (promise: Promise<any>) => {
@@ -31,12 +31,13 @@ export const useOnDoubleClick = (
 ) => {
   const api = useCancellablePromises();
   const delay = get(options, 'delay', DELAY_DEFAULT)
-  // const { delay = 100 } = options;
 
   const handleClick = () => {
     api.clearPendingPromises();
     const waitForClick = cancellablePromise(delayFunc(delay));
     api.appendPendingPromise(waitForClick);
+
+    
 
     return waitForClick.promise
       .then(() => {
