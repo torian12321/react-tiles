@@ -23,9 +23,7 @@ const mapState = (state: AppState, ownProps: Props): Props => {
   };
 };
 const mapDispatchToProps = (dispatch: Function, ownProps: Props): State => ({
-  onClick: () => {
-    dispatch(tileToggle(ownProps.id));
-  },
+  onClick: () => dispatch(tileToggle(ownProps.id)),
   onDoubleClick: () => dispatch(columnToggle(ownProps.id)),
   onMouseEnter: () => dispatch(boardSelectedAreaSetEndTile(ownProps.id)),
   onLongPress: () => {
@@ -33,7 +31,6 @@ const mapDispatchToProps = (dispatch: Function, ownProps: Props): State => ({
     dispatch(boardSelectedAreaSetEndTile(ownProps.id));
   },
   onMouseUp: () => {
-    // dispatch(tileToggle(ownProps.id));
     dispatch(areaToggle());
     dispatch(boardSelectedAreaUnset());
   },

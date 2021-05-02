@@ -14,11 +14,14 @@ const Tile: React.FunctionComponent<Props & State> = ({
   onLongPress = (e: Event) => {},
   onMouseUp = (e: Event) => {},
 }: Props & State) => {
+  // eslint-disable-next-line
   const [handleClick, handleDoubleClick] = useOnDoubleClick(onClick, onDoubleClick);
-  const longPressEvent = useLongPress({ onLongPress, onClick, onMouseUp });
+  const longPressEvent = useLongPress({ onLongPress, onClick });
 
   return (
     <div
+      onMouseEnter={() => onMouseEnter()}
+      onMouseUp={()=> onMouseUp()}
       className={classNames(
         styles.wrapper,
         isFlipped && styles.flipped,
@@ -29,14 +32,8 @@ const Tile: React.FunctionComponent<Props & State> = ({
         aria-label={`tile-${id}`}
         {...longPressEvent}
         onDoubleClick={handleDoubleClick}
-        onMouseEnter={() => onMouseEnter()}
-        // onMouseUp={() => onMouseUp()}
         
-        className={classNames(
-          styles.tile,
-          // isSelected && styles.tile_selected,
-          // isFlipped && styles.tile_flipped,
-        )}
+        className={styles.tile}
       >{id}
       </button>
     </div>

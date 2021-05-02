@@ -4,7 +4,6 @@ const useLongPress = (
   {
     onClick,
     onLongPress,
-    onMouseUp,
   },
   {
     shouldPreventDefault = true,
@@ -44,16 +43,13 @@ const useLongPress = (
   return {
     onMouseDown: e => start(e),
     onTouchStart: e => start(e),
-    onMouseUp: e => { clear(e); onMouseUp(e)},
-    // onMouseUp: e => { clear(e)},
+    onMouseUp: e => clear(e),
     onMouseLeave: e => clear(e, false),
     onTouchEnd: e => clear(e),
   };
 };
 
-const isTouchEvent = event => {
-  return "touches" in event;
-};
+const isTouchEvent = event => "touches" in event;
 
 const preventDefault = event => {
   if (!isTouchEvent(event)) return;
