@@ -81,7 +81,7 @@ const reducer = (state: any = initialState, action: State & Action) => {
         const { ids = [], flipped } = action.payload;
         const updatedTiles: any = {};
 
-        ids.map((id: string) => {
+        ids.forEach((id: string) => {
           const tile = getTileById(state, id);
           updatedTiles[tile.id] = {
             ...tile,
