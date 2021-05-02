@@ -1,7 +1,6 @@
 import {
-  TILE_TOGGLE,
+  TILES_TOGGLE,
   BOARD_RESET,
-  BOARD_TOGGLE_COL,
   BOARD_SELECTEDAREA_SET_INI,
   BOARD_SELECTEDAREA_SET_END,
 } from "../actions/action.types";
@@ -75,34 +74,17 @@ const initialState: State = {
 };
 
 const reducer = (state: any = initialState, action: State & Action) => {
-  switch (action.type) {
-    case TILE_TOGGLE:
-      const { id } = action.payload;
-      const tile = getTileById(state, id);
-
-      return {
-        ...state,
-        tiles: {
-          ...state.tiles,
-          byIds: {
-            ...state.tiles.byIds,
-            [id]: {
-              ...tile,
-              flipped: !tile.flipped,
-            },
-          },
-        },
-      };
-  
-      case BOARD_TOGGLE_COL:
-        const { col, flipped } = action.payload;
+  switch (action.type) {  
+      case TILES_TOGGLE:
+        const { ids = [], flipped } = action.payload;
         const updatedTiles: any = {};
 
-        getTileByCol(state, col).forEach(tile => {
+        ids.map((id: string) => {
+          const tile = getTileById(state, id);
           updatedTiles[tile.id] = {
             ...tile,
             flipped,
-          }
+          };
         });
 
         return {

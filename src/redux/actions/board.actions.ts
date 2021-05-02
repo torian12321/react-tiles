@@ -1,38 +1,53 @@
 import {
   BOARD_RESET,
-  BOARD_TOGGLE_COL,
-  TILE_TOGGLE,
+  TILES_TOGGLE,
   BOARD_SELECTEDAREA_SET_INI,
   BOARD_SELECTEDAREA_SET_END,
 } from './action.types';
-import { getTileById } from '../selectors/board.selectors';
+import { getTileById, getTileByCol } from '../selectors/board.selectors';
+import { Tile } from '../reducers/board.reducers';
 
 export const boardReset = () => ({
   type: BOARD_RESET,
 });
 
-export const tileToggle = (tileId: string) => ({
-  type: TILE_TOGGLE,
+export const tilesToggle = (
+  tilesId: string[] = [],
+  flipped: boolean = false
+) => ({
+  type: TILES_TOGGLE,
   payload: {
-    id: tileId,
+    ids: tilesId,
+    flipped,
   },
 });
+
+export const tileToggle = (tileId: string): Object => (
+  dispatch: any,
+  getState: Function
+) => {
+  const state = getState();
+  const tile = getTileById(state, tileId);
+
+  dispatch(tilesToggle(
+    [tile.id],
+    !tile.flipped
+  ));
+};
 
 // Flip the full column from the indicated tale
 export const columnToggle = (tileId: string): Object => (
   dispatch: any,
   getState: Function
 ) => {
-    const tile = getTileById(getState(), tileId);
+  const state = getState();
+  const tile = getTileById(state, tileId);
 
-    return dispatch({
-      type: BOARD_TOGGLE_COL,
-      payload: {
-        col: tile.y,
-        flipped: !tile.flipped,
-      }
-    });
-  };
+  dispatch(tilesToggle(
+    getTileByCol(state, tile.y).map((t: Tile) => t.id),
+    !tile.flipped
+  ));
+};
 
 
 export const boardSelectedAreaSetIniTile = (tileId: string) => ({

@@ -4,18 +4,17 @@
   box-sizing: border-box;
   margin: 6px;
   padding: 6px;
+  color: green;
 }
-.tile {
-  background: green;
-}
-.flipped .tile {
-  background: red;
+.flipped {
+  color: red;
 }
 .selected .tile {
   opacity: .2;
 }
 
 .tile {
+  color: currentColor;
   background-color: currentColor;
   // font-size: 100px;
 
