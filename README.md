@@ -1,3 +1,6 @@
+![CI/CD](https://github.com/torian12321/react-tiles/workflows/CI/CD/badge.svg)
+![License](https://img.shields.io/github/license/torian12321/react-tiles)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
