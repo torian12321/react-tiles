@@ -1,16 +1,23 @@
-$boxSize: 45px;
+@import '@../../../../assets/styles/abstract/index.scss';
 
 .wrapper {
-  font-size: $boxSize;
   box-sizing: border-box;
   padding: 6px;
   transition: opacity .2s;
   min-height: 1em;
   min-width: 1em;
+  font-size: 45px;
+
+  @include bp-sm {
+    font-size: 60px;   
+  }
+  @include bp-md {
+    font-size: 80px;   
+  }
 
   &.selected {
     opacity: .4;
-  }
+  }  
 }
 
 .panel {
