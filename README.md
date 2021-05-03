@@ -1,4 +1,3 @@
-# Getting Started with Create React App
 ![CD⚙️](https://github.com/torian12321/react-tiles/workflows/CD⚙️/badge.svg)
 ![CI](https://github.com/torian12321/react-tiles/workflows/CI/badge.svg)
 ![License](https://img.shields.io/github/license/torian12321/react-tiles)
