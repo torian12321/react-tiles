@@ -1,6 +1,7 @@
 import {
   TILES_TOGGLE,
   BOARD_RESET,
+  BOARD_GRID_SIZE_SET,
   BOARD_SELECTEDAREA_UNSET,
   BOARD_SELECTEDAREA_SET_INI,
   BOARD_SELECTEDAREA_SET_END,
@@ -35,7 +36,7 @@ export interface State {
   selectedArea: SelectedArea,
 };
 
-const buildBoard2 = (size: number): Tiles => {
+const buildBoard = (size: number): Tiles => {
   const byIds: { [key: string]: Tile } = {};
   const allIds = [];
   var count = 0;
@@ -67,7 +68,7 @@ const iniSelectedArea = {
   endTile: undefined,
 };
 const initialState: State = {
-  tiles: buildBoard2(iniSize),
+  tiles: buildBoard(iniSize),
   options: {
     columns: iniSize,
     rows: iniSize,
@@ -99,6 +100,18 @@ const reducer = (state: any = initialState, action: State & Action) => {
             },
           },
         };
+
+    case BOARD_GRID_SIZE_SET:
+      const { size = iniSize } = action.payload;
+      return {
+        ...state,
+        tiles: buildBoard(size),
+        options: {
+          ...state.options,
+          columns: size,
+          rows: size,
+        },
+      };
 
     case BOARD_SELECTEDAREA_SET_INI:
       const { iniTile = undefined } = action.payload;

@@ -1,6 +1,7 @@
 import {
   BOARD_RESET,
   TILES_TOGGLE,
+  BOARD_GRID_SIZE_SET,
   BOARD_SELECTEDAREA_UNSET,
   BOARD_SELECTEDAREA_SET_INI,
   BOARD_SELECTEDAREA_SET_END,
@@ -10,6 +11,12 @@ import { Tile } from '../reducers/board.reducers';
 
 export const boardReset = () => ({
   type: BOARD_RESET,
+});
+export const boardSetSize = (size?: number) => ({
+  type: BOARD_GRID_SIZE_SET,
+  payload: {
+    size,
+  },
 });
 
 export const tilesToggle = (
