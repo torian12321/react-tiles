@@ -7,7 +7,7 @@ const useLongPress = (
   },
   {
     shouldPreventDefault = true,
-    delay = 100,
+    delay = 500,
   } = {}
 ) => {
   const [longPressTriggered, setLongPressTriggered] = useState(false);
