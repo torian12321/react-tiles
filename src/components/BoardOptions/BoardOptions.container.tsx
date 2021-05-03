@@ -11,7 +11,7 @@ const mapState = (): Props => ({
 const mapDispatchToProps = (dispatch: Function): State => ({
   setSizeS: () => dispatch(boardSetSize(4)),
   setSizeM: () => dispatch(boardSetSize(6)),
-  setSizeL: () => dispatch(boardSetSize(10)),
+  setSizeL: () => dispatch(boardSetSize(8)),
 });
 
 export default connect(
