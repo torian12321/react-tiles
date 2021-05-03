@@ -32,10 +32,17 @@ const Tile: React.FunctionComponent<Props & State> = ({
         aria-label={`tile-${id}`}
         {...longPressEvent}
         onDoubleClick={handleDoubleClick}
-        
-        className={styles.tile}
-      >{id}
+        className={styles.panel}
+      >
+        <div className={styles.front}>
+          <div className={styles.box1} />
+        </div>
+        <div className={styles.back}>
+          <div className={styles.box2} />
+        </div>
       </button>
+      
+
     </div>
   );
 };
