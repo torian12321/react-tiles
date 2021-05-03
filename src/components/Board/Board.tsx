@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import Tile from '../Tile';
 import { Props, State, IBoardRow } from './Board.interfaces';
 import styles from './Board.module.scss';
@@ -22,6 +23,7 @@ const Row = ({ tiles = [] }: IBoardRow) => (
 );
 
 const Board: React.FunctionComponent<Props & State> = ({
+  className,
   tiles = [],
   columns,
   onMouseLeave = () => {},
@@ -35,7 +37,10 @@ const Board: React.FunctionComponent<Props & State> = ({
   );
 
   return (
-    <div className={styles.board} onMouseLeave={handleOnMouseLeave}>
+    <div
+      className={classNames(styles.board, className)}
+      onMouseLeave={handleOnMouseLeave}
+    >
       {renderRows()}
     </div>
   );

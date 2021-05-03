@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { get } from 'lodash';
 import { Board } from '../components/Board';
+import { BoardOptions } from '../components/BoardOptions';
 import { BtnReset } from '../components/BtnReset';
 import useDebounce from '../hooks/useDebounce';
 import { Props } from './App.interfaces';
@@ -33,6 +34,7 @@ const App = ({ tiles }: Props) => {
   return (
     <div className={styles.App}>
       <div className={styles.content}>
+        <BoardOptions />
         <Board />
         <BtnReset />
       </div>
