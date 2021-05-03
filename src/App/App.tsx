@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import axios from 'axios';
 import { Board } from '../components/Board';
 import { BtnReset } from '../components/BtnReset';
 import useDebounce from '../hooks/useDebounce';
@@ -10,6 +11,18 @@ const App = ({ tiles }: Props) => {
 
   useEffect(() => {
     console.log('aaaa', savedTiles)
+    axios.post('https://postman-echo.com/get?foo1=bar1&foo2=bar2', {
+      tiles: savedTiles,
+      firstName: 'Fred',
+      lastName: 'Flintstone'
+    })
+    .then(function (response: any) {
+      console.log(response);
+    })
+    .catch(function (error: Error) {
+      console.log(error);
+    });
+
   }, [savedTiles])
 
   return (
