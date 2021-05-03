@@ -3,7 +3,7 @@
 import { get } from 'lodash';
 import useCancellablePromises from './useCancellablePromises';
 
-const DELAY_DEFAULT = 250;
+const DELAY_DEFAULT = 400;
 
 const delayFunc = (n: number = DELAY_DEFAULT) => new Promise(resolve => setTimeout(resolve, n));
 const cancellablePromise = (promise: Promise<any>) => {
