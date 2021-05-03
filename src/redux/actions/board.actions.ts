@@ -63,7 +63,7 @@ export const areaToggle = (): Object => (
 
     dispatch(tilesToggle(
       getTileseOnSelectedArea(state),
-      !tile.flipped
+      !!tile.flipped
     ));
   };
 };
