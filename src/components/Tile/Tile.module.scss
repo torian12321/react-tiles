@@ -1,4 +1,4 @@
-$boxSize: 60px;
+$boxSize: 45px;
 
 .wrapper {
   font-size: $boxSize;
@@ -62,9 +62,9 @@ $boxSize: 60px;
   border: 2px solid transparent;
 }
 .box1 {
-  background: #4979bc;
+  background: var(--color-main);
 }
 .box2 {
-  background: #f79c4c;
-  // background: #bc3d89;
+  background: var(--color-sec);
+  // background: var(--color-accent);;
 }

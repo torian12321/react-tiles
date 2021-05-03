@@ -1,0 +1,17 @@
+@import "./abstract/index.scss";
+
+:root{
+  --color-main: #{$color};
+  --color-main-dark: #{darken($color, 7%)};
+  --color-main-darker: #{darken($color, 15%)};
+  --color-main-light: #{lighten($color, 10%)};
+  --color-main-lighter: #{lighten($color, 30%)};
+
+  --color-sec: #{$color-sec};
+  --color-sec-dark: #{darken($color-sec, 7%)};
+  --color-sec-darker: #{darken($color-sec, 15%)};
+  --color-sec-light: #{lighten($color-sec, 10%)};
+  --color-sec-lighter: #{lighten($color-sec, 30%)};
+
+  --color-accent: #{$color-accent};
+}

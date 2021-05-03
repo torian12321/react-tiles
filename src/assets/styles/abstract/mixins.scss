@@ -1,0 +1,19 @@
+/***********************/
+/* - 1. BreakPoints -- */
+/***********************/
+// Usage:
+//
+// .sidebar {
+//   width: 50%;
+//   float: left;
+//
+//   @include bp-sm {
+//     width: 100%;
+//     float: none;
+//   }
+// }
+
+@mixin bp-xs { @media (min-width: $bp_xs) { @content; }}
+@mixin bp-sm { @media (min-width: $bp_sm) { @content; }}
+@mixin bp-md { @media (min-width: $bp_md) { @content; }}
+@mixin bp-lg { @media (min-width: $bp_lg) { @content; }}

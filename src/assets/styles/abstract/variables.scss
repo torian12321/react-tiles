@@ -1,0 +1,16 @@
+/* -------------- */
+/* --- Colors --- */
+/* -------------- */
+$color: #4979bc;
+$color-sec: #f79c4c;
+$color-accent: #bc3d89;
+
+
+/* ********************* */
+/* -- 2. Breakpoints --- */
+/* ********************* */
+$bp_xxs:480px !default;
+$bp_xs: 767px !default;
+$bp_sm: $bp_xs + 1 !default;
+$bp_md: 992px !default;
+$bp_lg: 1100px !default;
