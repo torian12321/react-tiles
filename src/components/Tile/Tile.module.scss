@@ -1,35 +1,77 @@
+@import '@../../../../assets/styles/abstract/index.scss';
 
 .wrapper {
-  flex-basis: calc(100% / 6);
   box-sizing: border-box;
-  // margin: 6px;
   padding: 6px;
   transition: opacity .2s;
+  min-height: 1em;
+  min-width: 1em;
+  font-size: 45px;
 
-  .tile {
-    background: green;
+  @include bp-sm {
+    font-size: 60px;   
   }
-  &.flipped .tile {
-    background: red;
+  @include bp-md {
+    font-size: 80px;   
   }
+
   &.selected {
-    opacity: .2;
+    opacity: .4;
+  }  
+}
+
+.panel {
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: relative;
+  perspective: 600px;
+  background: transparent;
+  border: none;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.front,
+.back {
+  height: inherit;
+	position: absolute;
+	top: 0;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: all .4s ease-in-out;
+}
+.front {
+	z-index: 900;
+  transform: rotateX(0deg) rotateY(0deg);
+}
+.back {
+  z-index: 1000;
+  transform: rotateY(-180deg);
+}
+.flipped {
+  .front {
+    z-index: 900;
+    transform: rotateY(180deg);
+  }
+  .back {
+    z-index: 1000;
+    transform: rotateX(0deg) rotateY(0deg);
   }
 }
 
-.tile {
-  background-color: currentColor;
-
-  width: 100%;
-  padding-top: 100%;
-
-  border: none;
-  outline: none;
-  box-sizing: content-box;
-  margin: 5px;
-  border-radius: 6px;
-  transition: background .4s;
-  transition-delay: .2s;
-
-  cursor: pointer;
+.box1,
+.box2 {
+	width: .8em;
+	height: .8em;
+	margin: 0 auto;
+  border-radius: 4px;
+  border: 2px solid transparent;
+}
+.box1 {
+  background: var(--color-main);
+}
+.box2 {
+  background: var(--color-sec);
+  // background: var(--color-accent);;
 }

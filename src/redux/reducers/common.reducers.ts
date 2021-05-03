@@ -5,7 +5,7 @@ export interface State {
 }
 
 const initialState: State = {
-  name: 'aitor',
+  name: 'Tiles App',
 };
 
 const reducer = (state = initialState, action: State & Action) => {
