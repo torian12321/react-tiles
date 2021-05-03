@@ -1,4 +1,6 @@
-export interface Props {};
+export interface Props {
+  className?: string,
+};
 export interface State {
   setSizeS: Function,
   setSizeM: Function,

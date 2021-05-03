@@ -18,7 +18,7 @@ const Button: React.FunctionComponent<IBtn> = ({
       className={styles.btn}
       disabled={disabled}
       onClick={handleOnClick}
-      >
+    >
       {label}
     </button>
   );
