@@ -7,13 +7,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Basic info
 
-[sample](demo.gif)
-[sample](/docs/demo.gif)
-
+Demo challenge where a 6x6 grid is displayed where:
+ - On click a tile, the tile should flip
+ - On doubleClick a tile, the full column should flip
+ - On click+hold+drag, all area selected should flip according to the initial tile selected
 
 <img src="docs/demo.gif">
-<img src="docs/demo.gif" width = 200>
-App to show the latest launches from [space-x](https://www.spacex.com/).
+<img src="docs/demo.gif" width = 400>
 Check the result [here](https://torian12321.github.io/react-tiles/)
 
 ## Setup Instructions
