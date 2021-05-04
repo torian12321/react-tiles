@@ -30,7 +30,7 @@ const Tile: React.FunctionComponent<Props & State> = ({
         isSelected && styles.selected,
       )}
     >
-      <button
+      <div
         aria-label={`tile-${id}`}
         className={styles.panel}
         {...longPressEvent}
@@ -41,9 +41,7 @@ const Tile: React.FunctionComponent<Props & State> = ({
         <div className={styles.back}>
           <div className={styles.box2} />
         </div>
-      </button>
-      
-
+      </div>
     </button>
   );
 };
