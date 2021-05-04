@@ -9,19 +9,21 @@ import useLongPress from "../../hooks/useLongPress";
 const Tile: React.FunctionComponent<Props & State> = ({
   id, isFlipped = false, isSelected = false,
   onClick = (e: Event) => {},
-  onDoubleClick= (e: Event) => {},
+  onDoubleClick = (e: Event) => {},
   onMouseEnter = (e: Event) => {},
   onLongPress = (e: Event) => {},
   onMouseUp = (e: Event) => {},
 }: Props & State) => {
   // eslint-disable-next-line
   const [handleClick, handleDoubleClick] = useOnDoubleClick(onClick, onDoubleClick);
-  const longPressEvent = useLongPress({ onLongPress, onClick });
+  const longPressEvent = useLongPress({ onLongPress });
 
   return (
     <div
       onMouseEnter={() => onMouseEnter()}
       onMouseUp={()=> onMouseUp()}
+      onClick={handleClick}
+      onDoubleClick={handleDoubleClick}
       className={classNames(
         styles.wrapper,
         isFlipped && styles.flipped,
@@ -30,9 +32,8 @@ const Tile: React.FunctionComponent<Props & State> = ({
     >
       <button
         aria-label={`tile-${id}`}
-        {...longPressEvent}
-        onDoubleClick={handleDoubleClick}
         className={styles.panel}
+        {...longPressEvent}
       >
         <div className={styles.front}>
           <div className={styles.box1} />
