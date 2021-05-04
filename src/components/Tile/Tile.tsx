@@ -19,7 +19,7 @@ const Tile: React.FunctionComponent<Props & State> = ({
   const longPressEvent = useLongPress({ onLongPress });
 
   return (
-    <div
+    <button
       onMouseEnter={() => onMouseEnter()}
       onMouseUp={()=> onMouseUp()}
       onClick={handleClick}
@@ -44,7 +44,7 @@ const Tile: React.FunctionComponent<Props & State> = ({
       </button>
       
 
-    </div>
+    </button>
   );
 };
 
