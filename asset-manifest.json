@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/react-tiles/static/css/main.6078ded1.chunk.css",
-    "main.js": "/react-tiles/static/js/main.c8d2d501.chunk.js",
-    "main.js.map": "/react-tiles/static/js/main.c8d2d501.chunk.js.map",
+    "main.js": "/react-tiles/static/js/main.0021968b.chunk.js",
+    "main.js.map": "/react-tiles/static/js/main.0021968b.chunk.js.map",
     "runtime-main.js": "/react-tiles/static/js/runtime-main.a7eb6dbb.js",
     "runtime-main.js.map": "/react-tiles/static/js/runtime-main.a7eb6dbb.js.map",
     "static/js/2.97d04326.chunk.js": "/react-tiles/static/js/2.97d04326.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.a7eb6dbb.js",
     "static/js/2.97d04326.chunk.js",
     "static/css/main.6078ded1.chunk.css",
-    "static/js/main.c8d2d501.chunk.js"
+    "static/js/main.0021968b.chunk.js"
   ]
 }
